@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link Shorts · short & sleek</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f8faff 0%, #eef2f9 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .card {
+      max-width: 720px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 48px;
+      padding: 2.5rem 2.2rem 2.8rem;
+      box-shadow: 0 20px 50px rgba(0, 20, 40, 0.12), 0 8px 24px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.2s ease;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .brand i {
+      font-size: 2.4rem;
+      color: #2563eb;
+      background: rgba(37, 99, 235, 0.12);
+      padding: 0.5rem;
+      border-radius: 18px;
+      box-shadow: 0 4px 8px rgba(37, 99, 235, 0.08);
+    }
+
+    .brand h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0b1e3a;
+    }
+
+    .brand span {
+      color: #2563eb;
+      background: rgba(37, 99, 235, 0.08);
+      padding: 0.1rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-left: 0.2rem;
+    }
+
+    .subhead {
+      color: #334e77;
+      font-size: 0.95rem;
+      margin-bottom: 2.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-left: 3px solid #2563eb;
+      padding-left: 1rem;
+      background: rgba(37, 99, 235, 0.02);
+      border-radius: 0 12px 12px 0;
+    }
+
+    .input-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .input-wrapper {
+      flex: 1 1 260px;
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 60px;
+      padding: 0.1rem 0.1rem 0.1rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), inset 0 0 0 1px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s, border-color 0.2s;
+      border: 1px solid #e9edf4;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #2563eb;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.12), inset 0 0 0 1px #2563eb;
+    }
+
+    .input-wrapper i {
+      color: #6b7f9f;
+      font-size: 1rem;
+      margin-right: 0.6rem;
+    }
+
+    .input-wrapper input {
+      border: none;
+      background: transparent;
+      padding: 0.9rem 0.8rem 0.9rem 0;
+      font-size: 0.95rem;
+      width: 100%;
+      outline: none;
+      color: #0b1e3a;
+      font-weight: 450;
+    }
+
+    .input-wrapper input::placeholder {
+      color: #a0b3cf;
+      font-weight: 400;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      border: none;
+      padding: 0 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      transition: 0.15s ease;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      letter-spacing: 0.3px;
+      height: 54px;
+      white-space: nowrap;
+    }
+
+    .btn-primary i {
+      font-size: 1.1rem;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: scale(0.97);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.94);
+    }
+
+    .output-area {
+      background: white;
+      border-radius: 32px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.5rem 0 1.8rem;
+      border: 1px solid #eef2f8;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.02);
+      transition: all 0.25s ease;
+    }
+
+    .output-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #2a4a77;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.7rem;
+    }
+
+    .output-label i {
+      color: #2563eb;
+      font-size: 0.9rem;
+    }
+
+    .shortened-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .shortened-link a {
+      color: #2563eb;
+      font-size: 1.15rem;
+      font-weight: 500;
+      text-decoration: none;
+      word-break: break-all;
+      border-bottom: 1px dashed rgba(37, 99, 235, 0.2);
+      padding-bottom: 0.1rem;
+      transition: 0.15s;
+    }
+
+    .shortened-link a:hover {
+      border-bottom-color: #2563eb;
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: 1px solid #dce2ec;
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1d3b66;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: 0.15s;
+      background: #f8faff;
+    }
+
+    .copy-btn i {
+      color: #2563eb;
+      font-size: 0.9rem;
+    }
+
+    .copy-btn:hover {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+
+    .copy-btn:hover i {
+      color: white;
+    }
+
+    .copy-btn.copied {
+      background: #0f973d;
+      border-color: #0f973d;
+      color: white;
+    }
+
+    .copy-btn.copied i {
+      color: white;
+    }
+
+    .empty-message {
+      color: #9aafca;
+      font-weight: 450;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .empty-message i {
+      font-size: 1.1rem;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid #e7ecf5;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: #2e4b77;
+    }
+
+    .stats span i {
+      margin-right: 0.4rem;
+      color: #2563eb;
+      width: 1.1rem;
+    }
+
+    .footer-note {
+      margin-top: 1.8rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #889fc0;
+      letter-spacing: 0.3px;
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-note i {
+      margin-right: 0.2rem;
+    }
+
+    @media (max-width: 550px) {
+      .card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 32px;
+      }
+      .brand h1 {
+        font-size: 1.6rem;
+      }
+      .input-group {
+        flex-direction: column;
+      }
+      .input-wrapper {
+        flex: 1 1 auto;
+      }
+      .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+      .shortened-link {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .copy-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <!-- Brand -->
+    <div class="brand">
+      <i class="fas fa-link"></i>
+      <h1>Link<span>Shorts</span></h1>
+    </div>
+    <div class="subhead">
+      <i class="fas fa-scissors" style="color:#2563eb;"></i>
+      <span>Paste your long URL & get a sleek short link</span>
+    </div>
+
+    <!-- Input area -->
+    <div class="input-group">
+      <div class="input-wrapper">
+        <i class="fas fa-globe"></i>
+        <input type="url" id="longUrlInput" placeholder="https://example.com/your-long-link" value="https://github.com/facebook/react">
+      </div>
+      <button class="btn-primary" id="shortenBtn">
+        <i class="fas fa-arrow-right"></i> Shorten
+      </button>
+    </div>
+
+    <!-- Output / shortened link -->
+    <div class="output-area" id="outputArea">
+      <div class="output-label">
+        <i class="fas fa-flag-checkered"></i> Your short link
+      </div>
+      <div class="shortened-link" id="shortenedLinkContainer">
+        <!-- dynamic content will be injected here -->
+        <span class="empty-message"><i class="fas fa-arrow-up-right-from-square"></i> Shortened link will appear here</span>
+      </div>
+    </div>
+
+    <!-- Stats & meta -->
+    <div class="stats">
+      <span><i class="fas fa-clock"></i> <span id="timestamp">Ready</span></span>
+      <span><i class="fas fa-arrow-right-arrow-left"></i> <span id="linkCount">0</span> links shortened</span>
+    </div>
+    <div class="footer-note">
+      <span><i class="fas fa-shield-alt"></i> privacy first</span>
+      <span><i class="fas fa-bolt"></i> instant</span>
+      <span><i class="fas fa-code"></i> onecode</span>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      "use strict";
+
+      // DOM elements
+      const longUrlInput = document.getElementById('longUrlInput');
+      const shortenBtn = document.getElementById('shortenBtn');
+      const shortenedContainer = document.getElementById('shortenedLinkContainer');
+      const timestampSpan = document.getElementById('timestamp');
+      const linkCountSpan = document.getElementById('linkCount');
+
+      // State
+      let linkCounter = 0;
+      let currentShortened = '';
+
+      // Helper: generate a short id (6 chars alphanumeric)
+      function generateShortId() {
+        const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let result = '';
+        for (let i = 0; i < 6; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+      }
+
+      // Helper: build fake short link (like short.link/abc123)
+      function buildShortLink(shortId) {
+        // Use a clean, modern domain style
+        return `https://short.link/${shortId}`;
+      }
+
+      // Update stats (timestamp & counter)
+      function updateStats() {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        timestampSpan.textContent = `last: ${timeStr}`;
+        linkCountSpan.textContent = linkCounter;
+      }
+
+      // Render the shortened link in the output area
+      function renderShortLink(shortUrl, originalUrl) {
+        // Clear container
+        shortenedContainer.innerHTML = '';
+
+        // Create anchor element
+        const linkEl = document.createElement('a');
+        linkEl.href = shortUrl;
+        linkEl.target = '_blank';
+        linkEl.rel = 'noopener noreferrer';
+        linkEl.textContent = shortUrl;
+        linkEl.setAttribute('aria-label', 'Shortened link');
+
+        // Create copy button
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-btn';
+        copyBtn.setAttribute('aria-label', 'Copy short link');
+        copyBtn.innerHTML = `<i class="fas fa-copy"></i> Copy`;
+
+        // Append both to container
+        shortenedContainer.appendChild(linkEl);
+        shortenedContainer.appendChild(copyBtn);
+
+        // Save current shortened for copy
+        currentShortened = shortUrl;
+
+        // Copy functionality
+        copyBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (!currentShortened) return;
+
+          // Use clipboard API
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(currentShortened)
+              .then(() => {
+                // visual feedback
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = `<i class="fas fa-check"></i> Copied!`;
+                setTimeout(() => {
+                  copyBtn.classList.remove('copied');
+                  copyBtn.innerHTML = `<i class="fas fa-copy"></i> Copy`;
+                }, 2000);
+              })
+              .catch(() => {
+                // fallback
+                fallbackCopy(currentShortened, copyBtn);
+              });
+          } else {
+            fallbackCopy(currentShortened, copyBtn);
+          }
+        });
+
+        // Increment counter & update stats
+        linkCounter += 1;
+        updateStats();
+      }
+
+      // Fallback copy method (for older browsers)
+      function fallbackCopy(text, btnElement) {
+        // Create a temporary input
+        const tempInput = document.createElement('input');
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          const successful = document.execCommand('copy');
+          if (successful) {
+            btnElement.classList.add('copied');
+            btnElement.innerHTML = `<i class="fas fa-check"></i> Copied!`;
+            setTimeout(() => {
+              btnElement.classList.remove('copied');
+              btnElement.innerHTML = `<i class="fas fa-copy"></i> Copy`;
+            }, 2000);
+          } else {
+            alert('Could not copy. Please select and copy manually.');
+          }
+        } catch (err) {
+          alert('Copy not supported. Please copy manually.');
+        }
+        document.body.removeChild(tempInput);
+      }
+
+      // Show empty state in output
+      function showEmptyState() {
+        shortenedContainer.innerHTML = `
+          <span class="empty-message"><i class="fas fa-arrow-up-right-from-square"></i> Shortened link will appear here</span>
+        `;
+        currentShortened = '';
+      }
+
+      // Main shorten function
+      function shortenUrl() {
+        let rawUrl = longUrlInput.value.trim();
+
+        // If empty, show a demo / fallback or just alert
+        if (!rawUrl) {
+          // Set a demo URL for convenience
+          rawUrl = 'https://github.com/facebook/react';
+          longUrlInput.value = rawUrl;
+        }
+
+        // Basic validation (if it doesn't look like a URL, prepend https://)
+        let validUrl = rawUrl;
+        if (!/^https?:\/\//i.test(rawUrl)) {
+          // Check if it's a valid hostname pattern (simple)
+          if (/^[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+/.test(rawUrl)) {
+            validUrl = 'https://' + rawUrl;
+          } else {
+            // fallback: treat as is, but we'll still use it.
+            validUrl = rawUrl;
+          }
+        }
+
+        // Generate short id and build short link
+        const shortId = generateShortId();
+        const shortLink = buildShortLink(shortId);
+
+        // Render the short link
+        renderShortLink(shortLink, validUrl);
+
+        // Optionally update input to show original (not necessary but nice)
+        // We keep the original value.
+      }
+
+      // Event listeners
+      shortenBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        shortenUrl();
+      });
+
+      // Press Enter in input field to trigger shorten
+      longUrlInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          shortenBtn.click();
+        }
+      });
+
+      // Initialize: set a default example, show empty state, update stats
+      (function init() {
+        // Set a default example URL
+        longUrlInput.value = 'https://github.com/facebook/react';
+        showEmptyState();
+        timestampSpan.textContent = 'ready';
+        linkCountSpan.textContent = '0';
+        // pre-fill counter as 0
+        linkCounter = 0;
+
+        // (Optional) you can auto-shorten on load if you want — but we leave it empty.
+        // Instead, we show a friendly placeholder.
+        // We'll let the user click shorten.
+        // But for better UX, we can prefill with a demo short? we leave empty.
+        // Optionally, we can auto-shorten the example after a tiny delay? 
+        // I'll leave it clean: user must click shorten.
+        // But we set the example URL, and empty state shows.
+      })();
+
+      // Add a small extra: if user clicks on output area, we focus the input
+      document.querySelector('.output-area')?.addEventListener('click', function() {
+        longUrlInput.focus();
+      });
+
+    })();
+  </script>
+</body>
+</html>
